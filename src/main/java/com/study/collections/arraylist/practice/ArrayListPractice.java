@@ -11,7 +11,7 @@ import com.study.collections.arraylist.impl.MyArrayList;
  *
  * [사고 훈련하기]
  * 실시간 채팅 메시지 저장할 때
- * 앞쪽 메시지 계속 삭제하고 뒤쪾에 추가할때
+ * 앞쪽 메시지 계속 삭제하고 뒤쪽에 추가할때
  * ArrayList가 적합한지 공부해서 서술해보기
  */
 public class ArrayListPractice {
