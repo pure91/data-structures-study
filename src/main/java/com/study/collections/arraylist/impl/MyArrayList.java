@@ -30,6 +30,12 @@ public class MyArrayList<E> {
         // Arrays.copyOf(원본 배열, 복사할 길이)
         // ex) 지금 elementData가 최초 10개로 생성자에서 할당했으면 elementData = {1,2,3,4,5,6,7,8,9,10} 일텐데
         //     newCapacity에서 길이 * 2를 했으니 {1,2,3,4,5,6,7,8,9,10,0,0,0,0,0,0,0,0,0,0} 이렇게 더 큰 크기로 복사되면서 나머지는 0으로 채워지는 것
+
+        // *** java 8버전 이후로는 ArrayList를 기본 생성자로 생성할 때 최초 capacity를 즉시 10으로 할당하지 않고 0이다.
+        // 이걸 지연초기화라고 하는데 메모리 효율성을 위해 변경된것
+        // EMPTY_ELEMENTDATA라는 빈 배열 {}로 초기화해놓고
+        // 개발자가 list.add()를 호출하는 순간 비로소 기본값 10으로 확장함!
+        // 이후 용량이 부족하면 1.5배씩 증가시킴
     }
 
     public E get(int index) {
