@@ -18,5 +18,25 @@ public class ArrayListPractice {
 
     public static void main(String[] args) {
         MyArrayList<Long> postIds = new MyArrayList<>();
+
+        // 게시글 Id를 100만개 추가하고
+        for (long i = 0; i < 1_000_000; i++) {
+            postIds.add(i);
+        }
+
+        // 조회 시간 측정
+        // long start = System.currentTimeMillis(); // 1/1,000초 => 1,000ms가 1초
+        long start = System.nanoTime(); // 1/1,000,000,000초
+
+        // 10만번 조회
+        for (int i = 0; i < 100_000; i++) {
+            postIds.get(i);
+        }
+
+        // long end = System.currentTimeMillis();
+        long end = System.nanoTime();
+
+        System.out.println("조회시간:" + (end - start));
+        //와... 나노초에 848300이 나오면 0.84ms? 이래서 O(1)이구나..
     }
 }
