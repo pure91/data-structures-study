@@ -20,6 +20,22 @@ public class MyArrayList<E> {
         elementData[size++] = e;
     }
 
+    // overloading 추가 뒤에서부터 한칸씩 이동
+    public void add(int index, E e) {
+        rangeCheckForAdd(index);
+
+        if (size == elementData.length) {
+            resize();
+        }
+
+        for (int i = size; i > index; i--) {
+            elementData[i] = elementData[i - 1];
+        }
+
+        elementData[index] = e;
+        size++;
+    }
+
     private void resize() {
         int newCapacity = elementData.length * 2;
         elementData = Arrays.copyOf(elementData, newCapacity);
@@ -38,6 +54,21 @@ public class MyArrayList<E> {
         // 이후 용량이 부족하면 1.5배씩 증가시킴
     }
 
+    public E remove(int index) {
+        rangeCheck(index);
+
+        E oldValue = (E) elementData[index];
+
+        for (int i = index; i < size - 1; i++) {
+            elementData[i] = elementData[i + 1];
+        }
+
+        elementData[size - 1] = null; // null을 넣어서 참조를 제거한다 -> GC처리, 메모리 누수 방지를 위함
+        size--;
+
+        return oldValue;
+    }
+
     public E get(int index) {
         rangeCheck(index);
         return (E) elementData[index];
@@ -51,6 +82,11 @@ public class MyArrayList<E> {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
+    }
+
+    private void rangeCheckForAdd(int index) {
+        if (index < 0 || index > size)
+            throw new IndexOutOfBoundsException();
     }
 
 }
